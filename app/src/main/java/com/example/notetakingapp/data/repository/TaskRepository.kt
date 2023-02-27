@@ -1,12 +1,11 @@
 package com.example.notetakingapp.data.repository
 
-import android.util.Log
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.map
 import com.example.notetakingapp.data.domain.Task
 import com.example.notetakingapp.room.TaskDao
 import com.example.notetakingapp.room.TaskEntity
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
 
@@ -22,8 +21,7 @@ interface TaskRepository {
 
     fun searchTasks(query: String): Flow<List<TaskEntity>>
 
-    fun filterTasks(status: String):Flow<List<TaskEntity>>
-
+    fun filterTasks(query: String, filter: String): Flow<List<TaskEntity>>
 
 }
 
@@ -62,6 +60,7 @@ class TaskRepositoryImpl(private val dao: TaskDao) : TaskRepository {
 
     override fun searchTasks(query: String): Flow<List<TaskEntity>> = dao.searchTasks(query)
 
-    override fun filterTasks(status: String): Flow<List<TaskEntity>> = dao.filterTasks(status)
+    override fun filterTasks(query: String, filter: String): Flow<List<TaskEntity>> =
+        dao.filterTasks(query, filter.uppercase())
 
 }

@@ -1,6 +1,8 @@
 package com.example.notetakingapp.screens.tasks
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,6 +37,7 @@ fun TasksScreen(
     var tabIndex by remember { mutableStateOf(0) }
 
     var isSearching by remember { mutableStateOf(false) }
+
 
 
     Scaffold(
@@ -87,9 +90,14 @@ fun TasksScreen(
             Column(modifier = Modifier.fillMaxWidth()) {
                 TabRow(selectedTabIndex = tabIndex) {
                     tabTitles.forEachIndexed { index, title ->
-                        Tab(selected = tabIndex == index,
-                            onClick = { tabIndex = index },
-                            text = { Text(text = title) })
+                        Tab(
+                            selected = tabIndex == index,
+                            onClick = {
+                                tabIndex = index
+                                viewModel.updateFilter(title)
+                            },
+                            text = { Text(text = title) }
+                        )
 
                     }
 

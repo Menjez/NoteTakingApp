@@ -42,8 +42,6 @@ fun EditTaskScreen(
     var expanded by remember { mutableStateOf(false) }
     var statusExpanded by remember { mutableStateOf(false) }
 
-    val dateDialogState = rememberMaterialDialogState()
-    val timeDialogState = rememberMaterialDialogState()
 
 //        OPTION 1
 //        TopAppBar(

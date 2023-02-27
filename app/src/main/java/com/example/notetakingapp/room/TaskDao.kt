@@ -28,6 +28,7 @@ interface TaskDao {
    @Query("SELECT * FROM NoteAppTable WHERE Task LIKE '%' || :query || '%'")
    fun searchTasks(query: String) : Flow<List<TaskEntity>>
 
-   @Query("SELECT * FROM NoteAppTable WHERE Status IN :status")
-   fun filterTasks(status: String) : Flow<List<TaskEntity>>
+   @Query("SELECT * FROM NoteAppTable WHERE Task LIKE '%' || :query || '%' AND Status = :filter")
+    fun filterTasks(query: String, filter: String) : Flow<List<TaskEntity>>
+
 }

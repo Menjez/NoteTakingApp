@@ -114,7 +114,6 @@ fun TasksScreen(
                         navController.navigate(
                             Routes.ViewTask.route.plus("?id=").plus(task.id.toString())
                         )
-                        // Routes.Edit.route.plus("?id=").plus(task.id.toString()) - prev navigation
                     }
                 }
             }

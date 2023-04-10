@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
@@ -35,7 +36,7 @@ fun ViewTaskScreen(
         mutableStateOf(false)
     }
 
-    val list = listOf(Pair("Update", {
+    val list = listOf(Pair("Update") {
         navController.navigate(
             Routes.Edit.route.plus("?id=").plus(viewModel.task?.id.toString())
         ) {
@@ -43,7 +44,7 @@ fun ViewTaskScreen(
                 inclusive = false
             }
         }
-    }), Pair("Delete", { viewModel.deleteTask { navController.popBackStack() } })
+    }, Pair("Delete") { viewModel.deleteTask { navController.popBackStack() } }
     )
 
 
@@ -66,43 +67,62 @@ fun ViewTaskScreen(
             }
         }
     }) {
-        Surface() {
-            Column(modifier = Modifier.padding(it)) {
-                Row(
+        Surface(modifier = Modifier.padding(it)) {
+            Column(modifier = Modifier.padding(8.dp)) {
+
+                OutlinedTextField(
+                    value = viewModel.task?.title ?: "",
+                    onValueChange = {},
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    readOnly = true,
+                    label = {
+                        Text(
+                            text = "Title",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.3F)
+                        )
+                    }
+                )
+                OutlinedTextField(
+                    value = viewModel.task?.description ?: "",
+                    onValueChange = {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 200.dp),
+                    readOnly = true,
+                    label = {
+                        Text(
+                            text = "Description",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.3F)
+                        )
+                    }
+                )
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Title",
-                        fontSize = TextUnit(26f, TextUnitType.Sp),
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.5F)
+                        text = "Priority:",
+                        fontSize = TextUnit(24f, TextUnitType.Sp),
+                        modifier = Modifier.padding(end = 4.dp)
                     )
-                    Row(horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "Priority:", fontSize = TextUnit(26f, TextUnitType.Sp))
-                        Chip(
-                            onClick = { /*TODO*/ },
-                            enabled = false,
-                            colors = ChipDefaults.chipColors(
-                                disabledBackgroundColor = when (viewModel.task?.priority) {
-                                    Task.Priority.LOW -> Color.Green
-                                    Task.Priority.MIDDLE -> Color.Yellow
-                                    Task.Priority.HIGH -> Color.Red
-                                    null -> Color.Gray
-                                }
-                            )
-                        ) {
-                            Text(text = viewModel.task?.priority.toString())
-                        }
+                    Chip(
+                        onClick = { /*TODO*/ },
+                        enabled = false,
+                        colors = ChipDefaults.chipColors(
+                            contentColor = when (viewModel.task?.priority) {
+                                Task.Priority.LOW -> Color.Green
+                                Task.Priority.MIDDLE -> Color.Yellow
+                                Task.Priority.HIGH -> Color.Red
+                                null -> Color.Gray
+                            },
+                            disabledBackgroundColor = Color.LightGray
+                        )
+                    ) {
+                        Text(text = viewModel.task?.priority.toString())
                     }
                 }
-
-
-                Text(
-                    text = (viewModel.task?.title ?: "No Title").split(" ")
-                        .map { it.replaceFirstChar { it.uppercase() } }.joinToString(" "),
-                    fontSize = TextUnit(7f, TextUnitType.Em),
-                )
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -143,7 +163,7 @@ fun ViewTaskScreen(
                         colors = ChipDefaults.chipColors(disabledBackgroundColor = Color.LightGray),
                         leadingIcon = {
                             Icon(
-                                imageVector = Icons.Rounded.PlayArrow,
+                                imageVector = Icons.Rounded.Timer,
                                 contentDescription = "Date Chip"
                             )
                         }
@@ -157,21 +177,11 @@ fun ViewTaskScreen(
                     }
 
                 }
-                Text(
-                    text = "Description",
-                    fontSize = TextUnit(26f, TextUnitType.Sp),
-                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.5F),
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                Text(
-                    text = viewModel.task?.description ?: "No Description",
-                    fontSize = TextUnit(5f, TextUnitType.Em)
-                )
 
-                /*Row(horizontalArrangement = Arrangement.SpaceBetween) {
+                Row(modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween) {
                     ExtendedFloatingActionButton(
                         onClick = { viewModel.deleteTask { navController.popBackStack() } },
-                        modifier = Modifier.padding(horizontal = 16.dp),
                         icon = { Icon(Icons.Filled.Delete, "delete button") },
                         text = { Text(text = "DELETE TASK") }
                     )
@@ -188,7 +198,7 @@ fun ViewTaskScreen(
                         icon = { Icon(Icons.Filled.Edit, "edit button") },
                         text = { Text(text = "EDIT TASK") }
                     )
-                }*/
+                }
             }
         }
     }

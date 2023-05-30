@@ -1,19 +1,17 @@
-package com.example.notetakingapp.screens.ViewModel
+package com.example.notetakingapp.screens.createedit
 
 import android.app.Application
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.example.notetakingapp.data.domain.Task
-import com.example.notetakingapp.data.repository.TaskRepository
-import com.example.notetakingapp.data.repository.TaskRepositoryImpl
+import com.example.notetakingapp.room.domain.Task
+import com.example.notetakingapp.room.TaskRepository
+import com.example.notetakingapp.room.TaskRepositoryImpl
 import com.example.notetakingapp.room.ToDoAppDatabase
 import kotlinx.coroutines.launch
-import java.sql.Time
 import java.util.*
 
 class EditTaskViewModel(
@@ -36,7 +34,7 @@ class EditTaskViewModel(
     var status by mutableStateOf(Task.Status.PENDING)
         private set
 
-    var date by mutableStateOf(Calendar.getInstance())
+    var date: Calendar by mutableStateOf(Calendar.getInstance())
         private set
 
     var task by mutableStateOf<Task?>(null)

@@ -1,7 +1,6 @@
-package com.example.notetakingapp.data.domain
+package com.example.notetakingapp.room.domain
 
 import com.example.notetakingapp.room.TaskEntity
-import java.sql.Time
 import java.util.Date
 
 data class Task(
@@ -9,7 +8,7 @@ data class Task(
     var title: String,
     var description: String,
     val date: Date,
-    val status: Status= Status.PENDING,
+    val status: Status = Status.PENDING,
     var priority: Priority = Priority.LOW
 ) {
 

@@ -1,10 +1,8 @@
-package com.example.notetakingapp.data.repository
+package com.example.notetakingapp.room
 
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.map
-import com.example.notetakingapp.data.domain.Task
-import com.example.notetakingapp.room.TaskDao
-import com.example.notetakingapp.room.TaskEntity
+import com.example.notetakingapp.room.domain.Task
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {

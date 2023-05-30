@@ -8,8 +8,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.example.notetakingapp.data.domain.Task
-import com.example.notetakingapp.data.repository.TaskRepositoryImpl
+import com.example.notetakingapp.room.domain.Task
+import com.example.notetakingapp.room.TaskRepositoryImpl
 import com.example.notetakingapp.room.ToDoAppDatabase
 import kotlinx.coroutines.launch
 

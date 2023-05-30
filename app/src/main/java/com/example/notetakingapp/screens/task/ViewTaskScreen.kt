@@ -1,6 +1,5 @@
 package com.example.notetakingapp.screens.task
 
-import androidx.compose.animation.VectorConverter
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -19,11 +18,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.notetakingapp.data.domain.Task
+import com.example.notetakingapp.room.domain.Task
 import com.example.notetakingapp.navigation.Routes
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.exp
 
 @OptIn(ExperimentalUnitApi::class, ExperimentalMaterialApi::class)
 @Composable

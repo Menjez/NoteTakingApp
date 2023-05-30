@@ -1,9 +1,7 @@
 package com.example.notetakingapp.room
 
-import androidx.annotation.RequiresPermission.Read
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.notetakingapp.data.domain.Task
 import kotlinx.coroutines.flow.Flow
 
 @Dao

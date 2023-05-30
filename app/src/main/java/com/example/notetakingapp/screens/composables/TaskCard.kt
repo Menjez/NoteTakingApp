@@ -1,27 +1,24 @@
-package com.example.notetakingapp.composables
+package com.example.notetakingapp.screens.composables
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import com.example.notetakingapp.data.domain.Task
+import com.example.notetakingapp.room.domain.Task
 import java.text.SimpleDateFormat
 import java.util.*
-import androidx.compose.ui.graphics.Color
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalUnitApi::class)
+@OptIn(ExperimentalUnitApi::class)
 @Composable
 fun TaskCard(task: Task, onClick: () -> Unit) {
     Row(
@@ -29,13 +26,6 @@ fun TaskCard(task: Task, onClick: () -> Unit) {
             .fillMaxWidth()
     ) {
 
-//        Column(
-//            modifier = Modifier.fillMaxHeight().background(Color.Red),
-//            verticalArrangement = Arrangement.Center,
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ) {
-//            Text(text = "bombo")
-//        }
         Card(
             border = BorderStroke(0.5.dp, Color.Gray),
             modifier = Modifier

@@ -1,32 +1,22 @@
-package com.example.notetakingapp.screens
+package com.example.notetakingapp.screens.createedit
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.node.modifierElementOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.notetakingapp.data.domain.Task
+import com.example.notetakingapp.room.domain.Task
 import com.example.notetakingapp.navigation.Routes
-import com.example.notetakingapp.screens.ViewModel.EditTaskViewModel
-import com.vanpra.composematerialdialogs.MaterialDialog
-import com.vanpra.composematerialdialogs.datetime.time.timepicker
-import com.vanpra.composematerialdialogs.rememberMaterialDialogState
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.exp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
